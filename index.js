@@ -4,6 +4,9 @@ const connection = require('./db')
 const jobRoute = require('./routes/job.route')
 
 const app = express()
+const cors = require('cors')
+
+app.use(cors())
 
 app.use(express.json())
 
