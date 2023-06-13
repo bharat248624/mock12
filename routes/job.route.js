@@ -25,18 +25,23 @@ jobRoute.get('/', async (req, res) => {
             page = 1
         }
         let values = 0
-        if(role){
-            if(role=='asc'){
-                values=-1
-            res.send(data)
+        if(date){
+            console.log(date)
+            if(date =='desc'){
+                // let data = await jobModel.find(obj).limit(10).skip((page-1)*Limit).sort({postedAt:-1})
+                // res.send(data)
+                console.log('ok')
+                values= -1
             } else{
-                values=1
+                // let data = await jobModel.find(obj).limit(10).skip((page-1)*Limit).sort({postedAt:-1})
+                // res.send(data)
+                values= 1
             }
         }
         
-        
+        console.log(values)
         // db.coll.find({$text: {$search: "cake"}}, {score: {$meta: "textScore"}}).sort({score: {$meta: "textScore"}})
-        let data = await jobModel.find(obj).limit(10).sort({postedAt:values}).skip((page-1)*Limit)
+        let data = await jobModel.find(obj).sort({postedAt:values}).limit(10).skip((page-1)*Limit)
             res.send(data)
 
 
