@@ -24,6 +24,15 @@ jobRoute.get('/', async (req, res) => {
         if(page <= 0){
             page = 1
         }
+        if(role){
+            if(role=='asc'){
+                let data = await jobModel.find(obj).limit(10).skip((page-1)*Limit)
+            res.send(data).sort({postedAt:+1})
+            } else{
+                let data = await jobModel.find(obj).limit(10).skip((page-1)*Limit)
+            res.send(data).sort({postedAt:-1})
+            }
+        }
         // db.coll.find({$text: {$search: "cake"}}, {score: {$meta: "textScore"}}).sort({score: {$meta: "textScore"}})
         let data = await jobModel.find(obj).limit(10).skip((page-1)*Limit)
             res.send(data)
